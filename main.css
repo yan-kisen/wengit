@@ -1,0 +1,271 @@
+#left-sidebar {
+  padding-left: 20px;
+  padding-right: 10px;
+  border-right: 1px solid lightgrey;
+}
+
+#main {
+  padding-left: 0;
+}
+
+#container {
+  margin: 0;
+}
+
+#add-repo .uk-icon-plus {
+  font-size: 18px;
+}
+
+#add-repo {
+  line-height: 18px;
+  height: 18px;
+  display: inline-block;
+}
+
+#window-icons {
+  height: 35px;
+  -webkit-app-region: drag;
+}
+
+#window-icons span {
+  -webkit-app-region: no-drag;
+  display: block;
+  float: right;
+}
+
+body {
+  background-color: white;
+}
+
+#minimize i {
+  position: relative;
+  top: -1px;
+  font-size: 12px;
+}
+
+#window-icons a {
+  padding: 5px 10px;
+  color: rgb(168, 168, 168);
+  padding-top: 5px;
+  display: inline-block;
+  margin-left: -3px;
+  margin-top: -2px;
+}
+
+#maximize i {
+  position: relative;
+  top: 1px;
+  font-size: 11px;
+}
+
+#close i {
+  font-size: 18px;
+}
+
+#window-icons a:hover {
+  background-color: rgb(168, 168, 168);
+  color: black;
+}
+
+#window-icons #close:hover {
+  background-color: red;
+  color: white;
+  text-decoration: none;
+}
+
+#window-icons #close {
+  font-family: Consolas;
+  font-size: 18px;
+  font-weight: bold;
+  height: 22px;
+}
+
+#add-repo .uk-icon-caret-down {
+  position: relative;
+  top: -2px;
+}
+
+.filter {
+  border: 1px solid rgb(168, 168, 168);
+  border-radius: 2px;
+  padding: 3px;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.filter ~ .uk-icon-remove {
+  z-index: 500;
+  cursor: pointer;
+  pointer-events: all;
+}
+
+.filter[value=""] ~ i.uk-icon-remove {
+  display: none;
+}
+
+html, body, #container {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#left-sidebar, #main {
+  height: calc(100% - 35px);
+}
+
+#filter-repos {
+  width: calc(100% - 35px);
+}
+
+#toolbar {
+  padding-left: 10px;
+  height: 35px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.uk-dropdown {
+  background: white;
+  padding: 8px;
+  width: 300px;
+  box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.3);
+}
+
+#manage-branches {
+  font-size: 12px;
+}
+
+.uk-dropdown .uk-nav {
+  margin: 0 -8px;
+}
+
+.uk-dropdown .uk-nav > li > a {
+  padding: 5px 8px;
+}
+
+.uk-dropdown > .uk-clearfix {
+  margin-bottom: 5px;
+}
+
+* {
+  font-size: 12px;
+}
+
+div[data-uk-dropdown] {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.uk-dropdown .uk-nav > li > a span {
+  line-height: 20px;
+}
+
+.uk-dropdown .uk-nav > li > a i {
+  color: grey;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.uk-dropdown .uk-tab-center {
+  margin: 0 -8px;
+  margin-bottom: 15px;
+}
+
+.uk-dropdown .uk-tab > li {
+  margin: 0;
+}
+
+.uk-dropdown .uk-tab > li.uk-active a {
+  border: none;
+  text-decoration: underline;
+  color: #0077dd;
+}
+
+.uk-dropdown .uk-tab > li a,
+.uk-dropdown .uk-tab > li a:hover {
+  background: none;
+  font-size: 14px;
+  border: none;
+  font-weight: bold;
+}
+
+#add-repo ~ .uk-dropdown {
+  width: 550px;
+}
+
+#add-repo-switcher .uk-form-row input {
+  width: calc(100% - 50px);
+}
+
+#add-repo-switcher .uk-form-row a {
+  float: right;
+  line-height: 30px;
+}
+
+#add-repo-switcher .uk-form-horizontal .uk-form-controls {
+  margin-left: 150px;
+}
+
+#add-repo-switcher .uk-form-horizontal .uk-form-label {
+  width: 150px;
+}
+
+.uk-dropdown .confirm-action {
+  display: block;
+  margin: -8px;
+  margin-top: 15px;
+  border-top: 1px solid lightgrey;
+  padding-right: 10px;
+  padding-top: 6px;
+  padding-bottom: 14px;
+  padding-left: 13px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.uk-dropdown .confirm-action.disabled {
+  background-color: whitesmoke;
+  color: lightgrey;
+  cursor: default;
+  pointer-events: none;
+}
+
+.uk-dropdown .confirm-action i {
+  font-size: 28px;
+  position: relative;
+  bottom: -5px;
+  left: -5px;
+}
+
+#add-repo-switcher .uk-form-row input:only-child {
+  width: 100%;
+}
+
+#add-repo-switcher .select2-choice {
+  border: none;
+  background: none;
+  color: #0077dd;
+}
+
+#add-repo-switcher .select2-arrow {
+  background: none;
+  border: none;
+}
+
+#add-repo-switcher .select2-arrow b {
+  background: none;
+  color: #0077dd;
+  font-family: FontAwesome;
+  display: inline-block;    font-weight: normal;    font-style: normal;
+  line-height: 1;    -webkit-font-smoothing: antialiased;
+}
+
+#add-repo-switcher .select2-arrow b:before {
+  content: "\f0d7";
+}
+
+#filter-remotes-container {
+  display: block;
+}

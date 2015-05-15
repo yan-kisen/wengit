@@ -1,0 +1,21 @@
+{
+  "name": "wengit",
+  "displayName": "Wengit",
+  "version": "0.1.0",
+  "description": "An Electron-based GUI git client",
+  "main": "main.js",
+  "author": "pitaj",
+  "engines": {
+    "electron": "0.25.2"
+  },
+  "dependencies": {
+    "gitignore": "^0.2.0",
+    "jquery": "^2.1.4",
+    "nodegit": "^0.3.3",
+    "select2": "^3.5.2-browserify"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pitaj/wengit.git"
+  }
+}
