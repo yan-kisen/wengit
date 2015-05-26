@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+html.max {
+  padding: 2px;
+  padding-bottom: 0;
+}
+
+body {
+
+}
+
+a {
+  text-decoration: none;
+  color: royalblue;
+}
+
+a:active,
+a:hover {
+  color: darkblue;
+}
