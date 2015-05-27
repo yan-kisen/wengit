@@ -14,8 +14,7 @@
     "gitignore": "^0.2.0",
     "jquery": "^2.1.4",
     "nodegit": "^0.3.3",
-    "riot": "^2.0.15",
-    "select2": "^3.5.2-browserify"
+    "riot": "^2.1.0"
   },
   "repository": {
     "type": "git",
