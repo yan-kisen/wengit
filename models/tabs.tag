@@ -1,60 +1,78 @@
-<tabs onclick={ click }>
+<tabs>
 <!-- a tabbed switcher between content -->
-
-  <yield/>
+  <div name="container" onclick={ click }>
+    <yield/>
+  </div>
 
   <style scoped>
     :scope {
+      display: block;
+    }
+
+    :scope > div {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
     }
 
-    tab-button {
+    :scope > div > tab-button {
       width: auto;
       flex: 1 1 auto;
       align-self: flex-start;
       order: 1;
       text-align: center;
+      padding: 18px 0;
+      border-bottom: 1px solid lightgrey;
     }
-    tab {
+
+    :scope > div > tab-button.active a {
+      text-decoration: underline;
+    }
+
+    :scope > div > tab {
       width: 100%;
       flex: main-size;
       align-self: flex-end;
       order: 5;
+      display: none;
+    }
+
+    :scope > div > tab.active {
+      display: block;
     }
   </style>
 
   <script>
-    click (e){
-      var el = e.target;
+    click(e){
+      var elem = e.target;
 
-      while(el){
-        if(el.tagName === "tabs" || el.tagName === "tab"){
-          break;
+      if(elem.matches("tab-button, tab-button *")){
+
+        Array.prototype.forEach.call(this.container.querySelectorAll(":scope > .active"), function(it){
+          it.className = it.className.replace("active", "");
+        });
+
+        while(elem.tagName.toLowerCase() !== "tab-button"){
+          elem = elem.parentNode;
         }
-        if(el.tagName === "tab-button"){
-          var k = 0, e = elem;
-          while (e = e.previousSibling) { ++k;}
 
-          Array.prototype.forEach.call(this.childNodes, function(elem){
-            elem.className = elem.className.replace("active", "");
-          });
-          e.className += "active";
+        var k = 1, el = elem;
+        while(!el.matches(":nth-of-type("+k+")")) { ++k; }
 
-          this.querySelectorAll(":scope > tab")[k].className = "active";
+        elem.className += "active";
 
-          break;
-        }
-        el = el.parentNode;
+        this.container.querySelector(":scope > tab:nth-of-type("+k+")").className += "active";
       }
+
     }
   </script>
 </tabs>
 
 <!-- each button for each tab defined by one of these -->
 <tab-button>
-  <yield/>
+  <a href="#">
+    <yield/>
+  </a>
 </tab-button>
 
 <!-- each tab within the switcher defined by one of these -->

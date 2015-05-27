@@ -44,5 +44,6 @@ require('./sidebar.tag');
 require('./repository.tag');
 
 require('./dropdown.tag');
+require('./tabs.tag');
 require('./inputs.tag');
 require('./overlay.tag');

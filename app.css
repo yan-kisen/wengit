@@ -27,3 +27,11 @@ a:active,
 a:hover {
   color: darkblue;
 }
+
+#add-repo-dropdown {
+  margin-left: 20px;
+}
+
+#add-repo-dropdown > div {
+  min-width: 200px;
+}

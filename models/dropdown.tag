@@ -13,10 +13,9 @@
     :scope {
       position: relative;
     }
-    div {
+    :scope > div {
       display: none;
       background: white;
-      padding: 8px;
       box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.3);
       position: absolute;
       top: 100%;
@@ -25,7 +24,7 @@
       margin-top: 5px;
     }
 
-    div.open {
+    :scope > div.open {
       display: block;
     }
   </style>
@@ -40,8 +39,9 @@
     });
 
     function handler(e){
-      var dropdowns = self.root.querySelectorAll('*');
-      if(Array.prototype.indexOf.call(dropdowns, e.target) === -1){
+      // var dropdowns = self.root.querySelectorAll('*');
+      // Array.prototype.indexOf.call(dropdowns, e.target) === -1
+      if(!e.target.matches("dropdown *")){
         document.body.removeEventListener('click', handler, false);
         self.out = false;
         self.update();
