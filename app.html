@@ -12,30 +12,33 @@
 <body>
   <windowbuttons></windowbuttons>
   <sidebar>
-    <dropdown id="add-repo-dropdown"
-    button='<i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i>' >
-      <tabs>
-        <tab-button>
-          Add
-        </tab-button>
-        <tab-button class="active" >
-          Create
-        </tab-button>
-        <tab-button>
-          Clone
-        </tab-button>
+    <div>
+      <dropdown id="add-repo-dropdown"
+      button='<i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i>' >
+        <tabs>
+          <tab-button>
+            Add
+          </tab-button>
+          <tab-button class="active" >
+            Create
+          </tab-button>
+          <tab-button>
+            Clone
+          </tab-button>
 
-        <tab>
-          Add a local repo
-        </tab>
-        <tab class="active">
-          Create a new repo
-        </tab>
-        <tab>
-          Clone a remote repo
-        </tab>
-      </tabs>
-    </dropdown>
+          <tab>
+            Add a local repo
+          </tab>
+          <tab class="active">
+            Create a new repo
+          </tab>
+          <tab>
+            Clone a remote repo
+          </tab>
+        </tabs>
+      </dropdown>
+    </div>
+    <filter placeholder="Filter repositories"><i class="fa fa-remove"></i></filter>
     <span style="text-align: center;">sidebar stuff</span>
   </sidebar>
   <repository>

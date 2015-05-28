@@ -31,24 +31,24 @@
 
   <script>
 
-    this.mixin('getSetOpts');
+    //this.mixin('getSetOpts');
 
-    this.on('mount', function(){
-      this.togglebutton.innerHTML = opts.button;
-      this.out = false;
+    var self = this;
+
+    self.on('mount', function(){
+      self.togglebutton.innerHTML = opts.button;
+      self.out = false;
     });
 
     function handler(e){
-      // var dropdowns = self.root.querySelectorAll('*');
-      // Array.prototype.indexOf.call(dropdowns, e.target) === -1
-      if(!e.target.matches("dropdown *")){
+      if(!self.root.contains(e.target) || e.keyCode === 27){
         document.body.removeEventListener('click', handler, false);
+        document.body.removeEventListener('keydown', handler, false);
         self.out = false;
         self.update();
       }
     }
 
-    var self = this;
     toggle(e){
       self.out = !self.out;
 
@@ -62,10 +62,11 @@
           self.dropdown.style.right -= rightOffset;
         }
         document.body.addEventListener('click', handler, false);
+        document.body.addEventListener('keydown', handler, false);
       } else {
         document.body.removeEventListener('click', handler, false);
+        document.body.removeEventListener('keydown', handler, false);
       }
-
     }
   </script>
 

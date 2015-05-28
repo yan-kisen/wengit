@@ -6,6 +6,7 @@
   <style scoped>
     :scope {
       height: 100%;
+      display: block;
     }
   </style>
 </repository>

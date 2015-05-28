@@ -1,9 +1,9 @@
 <filter>
 <!-- an input to filter certain things -->
 
-  <input name="filter" type="text" data-empty={ this.empty }
+  <input name="filter" type="text"
     placeholder={ opts.placeholder } onkeydown={ this.keydown }>
-  <span onclick={ this.clear }>
+  <span onclick={ this.clear } hide={ this.empty }>
     <!-- html passed becomes the button -->
     <yield/>
   </span>
@@ -23,20 +23,22 @@
       box-sizing: border-box;
       width: 100%;
     }
-    input[data-empty] ~ span {
-      display: none;
-    }
     span {
       position: absolute;
       right: 0;
       padding: 3px;
+      top: 0;
     }
   </style>
 
   <script>
+    this.empty = true;
+    riot.observable(this);
+
     clear(e){
       this.filter.value = "";
       this.empty = true;
+      this.filter.focus();
     }
     keydown(e){
       if(this.filter.value.trim().length){
@@ -44,9 +46,8 @@
       } else {
         this.empty = true;
       }
-      if(typeof opts.change === "function"){
-        opts.change(this.filter.value);
-      }
+      this.trigger('change', this.filter.value);
+      return true;
     }
   </script>
 
@@ -59,13 +60,13 @@
     <span name="selection">{ selected.innerHTML }</span><i class="fa fa-caret-down"></i>
   </a>
 
-  <ul name="dropdown" class={ open: this.open }>
+  <ul name="dropdown" class={ open: this.out }>
     <lh>
-      <filter placeholder="Filter options" change={ change }>
+      <filter name="filter" placeholder="Filter options">
         <i class="fa fa-times"></i>
       </filter>
     </lh>
-    <!-- passed li elements become the list -->
+    <!-- passed list elements become the list -->
     <yield/>
   </ul>
 
@@ -74,7 +75,7 @@
       display: inline-block;
       position: relative;
     }
-    ul {
+    :scope > ul {
       display: none;
       background: white;
       padding: 8px;
@@ -88,12 +89,12 @@
       max-width: 150px;
       overflow-y: auto;
     }
-    ul.open {
+    :scope > ul.open {
       display: block;
     }
-    ul,
-    ul > li,
-    ul > lh {
+    :scope > ul,
+    :scope > ul > li,
+    :scope > ul > lh {
       list-style: none;
     }
   </style>
@@ -101,30 +102,24 @@
   <script>
     var self = this;
     self.on('mount', function(){
-      self.selected = self.dropdown.childNodes[0];
+      self.selected = self.dropdown.querySelectorAll('li.selected');
+      self.out = false;
     });
-    toggle(e){
-      e.stopImmediatePropagation();
-      self.open = !self.open;
 
-      function handler(e){
-        var elem = e.target;
-        var found = false;
-        while(elem){
-          if(elem === self.dropdown){
-            found = true;
-            break;
-          }
-          elem = elem.parent;
-        }
-        if(!found){
-          e.stopImmediatePropagation();
-          document.body.removeEventListener('click', handler, false);
-          self.toggle(e);
-        }
+    function handler(e){
+      if(e.target.matches("select3 > "))
+      if(!e.target.matches("dropdown *") || e.keyCode === 27){
+        document.body.removeEventListener('click', handler, false);
+        document.body.removeEventListener('keydown', handler, false);
+        self.out = false;
+        self.update();
       }
+    }
 
-      if(self.open){
+    toggle(e){
+      self.out = !self.out;
+
+      if(self.out){
         var rect = self.dropdown.getBoundingClientRect();
         var leftOffset = window.innerWidth - rect.left;
         var rightOffset = window.innerWidth - rect.right;
@@ -134,15 +129,17 @@
           self.dropdown.style.right -= rightOffset;
         }
         document.body.addEventListener('click', handler, false);
+        document.body.addEventListener('keydown', handler, false);
       } else {
         document.body.removeEventListener('click', handler, false);
+        document.body.removeEventListener('keydown', handler, false);
       }
     }
 
-    change(val){
+    self.filter.on('change', function(val){
       val = val.trim();
       if(val.length){
-        for(var elems = self.dropdown.childNodes, l = elems.length, i = 1; i < l; i++){
+        for(var elems = self.dropdown.querySelectorAll('li[data-value]'), l = elems.length, i = 1; i < l; i++){
           if(fuzzy(val, elems[i].innerHTML)){
             elems[i].style.display = 'block';
           } else {
@@ -150,6 +147,7 @@
           }
         }
       }
-    }
+    });
+
   </script>
 </select3>
