@@ -9,13 +9,13 @@
       display: block;
     }
 
-    :scope > div {
+    > div {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
     }
 
-    :scope > div > tab-button {
+    > div > tab-button {
       width: auto;
       flex: 1 1 auto;
       align-self: flex-start;
@@ -23,13 +23,14 @@
       text-align: center;
       padding: 18px 0;
       border-bottom: 1px solid lightgrey;
+      font-size: 14px;
     }
 
-    :scope > div > tab-button.active a {
-      text-decoration: underline;
+    > div > tab-button.active > a {
+      border-bottom: 2px solid royalblue;
     }
 
-    :scope > div > tab {
+    > div > tab {
       width: 100%;
       flex: main-size;
       align-self: flex-end;
@@ -37,7 +38,7 @@
       display: none;
     }
 
-    :scope > div > tab.active {
+    > div > tab.active {
       display: block;
     }
   </style>

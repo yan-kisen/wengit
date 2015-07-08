@@ -10,7 +10,7 @@
   <script src="app.js"></script>
 </head>
 <body>
-  <windowbuttons></windowbuttons>
+  <window-buttons></window-buttons>
   <sidebar>
     <div>
       <dropdown id="add-repo-dropdown"
@@ -27,13 +27,44 @@
           </tab-button>
 
           <tab>
-            Add a local repo
+            <form id="add-local-repo">
+              <field-group>
+                <label for="add-repo-local-path">Local Path</label>
+                <folder-input id="add-repo-local-path">Browse</folder-input>
+              </field-group>
+            </form>
+            <confirm-action disabled>
+              Add local repository
+            </confirm-action>
           </tab>
           <tab class="active">
-            Create a new repo
+            <form id="create-repo">
+              <field-group>
+                <label for="create-repo-name">Name</label>
+                <input type="text" id="create-repo-name">
+              </field-group>
+              <field-group>
+                <label for="create-repo-local-path">Local Path</label>
+                <folder-input id="create-repo-local-path">Browse</folder-input>
+              </field-group>
+              <field-group>
+                <label for="create-repo-git-ignore">Git ignore</label>
+                <three-sel id="create-repo-git-ignore">
+                  <li data-value="none" class="selected"><a href="#">None</a></li>
+                </three-sel>
+              </field-group>
+            </form>
+            <confirm-action disabled>
+              Create new repository
+            </confirm-action>
           </tab>
           <tab>
-            Clone a remote repo
+            <form id="clone-repo">
+
+            </form>
+            <confirm-action disabled>
+              Clone remote repository
+            </confirm-action>
           </tab>
         </tabs>
       </dropdown>
@@ -42,7 +73,9 @@
     <span style="text-align: center;">sidebar stuff</span>
   </sidebar>
   <repository>
-    <span style="text-align: center;">repository stuff</span>
+    <commit-list>
+
+    </commit-list>
   </repository>
 </body>
 </html>

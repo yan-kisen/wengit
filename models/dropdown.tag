@@ -13,7 +13,7 @@
     :scope {
       position: relative;
     }
-    :scope > div {
+    > div {
       display: none;
       background: white;
       box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.3);
@@ -24,8 +24,12 @@
       margin-top: 5px;
     }
 
-    :scope > div.open {
+    > div.open {
       display: block;
+    }
+
+    > a {
+      font-size: 14px;
     }
   </style>
 

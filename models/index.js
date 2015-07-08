@@ -1,28 +1,5 @@
 "use strict";
 
-/*
-var riot = require('riot');
-var fs = require('fs');
-
-var models = [
-  "inputs",
-  "dropdown",
-  "overlay",
-  "window-buttons"
-];
-
-var scripts = "";
-models.forEach(function(model){
-  var script = fs.readFileSync(__dirname + '/' + model + '.tag');
-  scripts += riot.compile(script);
-});
-
-module.exports = scripts;
-
-*/
-
-
-
 var riot = module.parent.require('riot');
 
 riot.mixin('getSetOpts', {
@@ -36,10 +13,13 @@ riot.mixin('getSetOpts', {
     Object.apply(this.opts, nopts);
     console.log(this.opts, nopts);
     return this;
+  },
+  getRiotObject: function(){
+    return this;
   }
 });
 
-require('./windowbuttons.tag');
+require('./window-buttons.tag');
 require('./sidebar.tag');
 require('./repository.tag');
 

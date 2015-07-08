@@ -1,4 +1,4 @@
-<windowbuttons>
+<window-buttons>
 <!-- custom window buttons for minimize, maximize, close -->
 
   <!-- right corner -->
@@ -52,6 +52,7 @@
       display: inline-block;
       text-decoration: none;
       height: 100%;
+      font-size: 14px;
     }
     span > a > i {
       min-width: 21px;
@@ -132,4 +133,4 @@
     }
   </script>
 
-</windowbuttons>
+</window-buttons>
