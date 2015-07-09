@@ -34,29 +34,27 @@
   <script>
     // default state
     this.empty = true;
-
-    this.root.riot = this;
-
-    // make the element observable
-    riot.observable(this.root);
+    this.value = "";
 
     clear(e){
       // when the clear button is pressed
       // clear the input
-      this.filter.value = "";
+      this.value = this.filter.value = "";
       // set the state
       this.empty = true;
       // focus it for new input
       this.filter.focus();
-      // trigger the change event on the element
-      this.root.trigger('change', e, '')
+      // trigger a change event
+      this.trigger('change', e, this.value);
     }
 
     key(e){
       // if the input isn't empty
       this.empty = !this.filter.value.trim().length;
+      this.value = this.filter.value;
       // trigger a change event
-      this.root.trigger('change', e, this.filter.value);
+      this.trigger('change', e, this.value);
+      // allow event to go through
       return true;
     }
   </script>
@@ -145,33 +143,34 @@
 
     self.on('mount', function(){
       // when the filter is typed in
-      self.filter.on('change', filterChanged);
+      self.tags.filter.on('change', filterChanged);
       // set default text and value
       self.selected = self.dropdown.querySelector('li.selected') || self.dropdown.childNodes[1];
     });
 
     function filterChanged(e, val){
       // get list of elements
-      var elems = self.dropdown.querySelectorAll('li[data-value]'), l = elems.length;
+      var elems = self.dropdown.querySelectorAll('li[data-value]'),
+        l = elems.length;
       // clean up text
       val = val.trim().toLowerCase();
       // if anything is entered
       if(val.length){
         // loop through elements
-        for(var i = 0; i < l; i++){
+        for(var el of elems){
           // if the element's value fuzzy matches what was entered
-          if(fuzzy(val, elems[i].dataset.value.toLowerCase())){
+          if(fuzzy(val, el.dataset.value.toLowerCase())){
             // show it
-            elems[i].style.display = 'block';
+            el.style.display = 'block';
           } else {
             // hide it
-            elems[i].style.display = 'none';
+            el.style.display = 'none';
           }
         }
       } else {
         // show all elements
-        for(var i = 0; i < l; i++){
-          elems[i].style.display = 'block';
+        for(var el of elems){
+          el.style.display = 'block';
         }
       }
     }
@@ -179,25 +178,19 @@
     optionClicked(e){
       // if the click really occurred within the dropdown
       if(self.dropdown.contains(e.target)){
-        // loop up through parents to the nearest LI node
-        var el = e.target;
-        while(el && el.tagName.toLowerCase() !== "ul"){
-          if(el.tagName.toLowerCase() === 'li'){
-            // once LI is found
-            // set is as the selected node
-            self.selected = el;
-            // remove event listeners
-            document.body.removeEventListener('click', handler, false);
-            document.body.removeEventListener('keydown', handler, false);
-            // set the dropdown closed
-            self.out = false;
-            // clear the filter
-            self.filter.riot.clear();
-            self.filter.riot.update();
-            break;
-          }
-          el = el.parentNode;
-        }
+        // get closest li parent
+        var el = e.target.closest("li");
+        // once LI is found
+        // set is as the selected node
+        self.selected = el;
+        // remove event listeners
+        document.body.off('click', handler);
+        document.body.off('keydown', handler);
+        // set the dropdown closed
+        self.out = false;
+        // clear the filter
+        self.tags.filter.clear();
+        self.tags.filter.update();
       }
     }
 
@@ -209,8 +202,8 @@
         // set dropdown closed
         self.out = false;
         // remove event listeners
-        document.body.removeEventListener('click', handler, false);
-        document.body.removeEventListener('keydown', handler, false);
+        document.body.off('click', handler);
+        document.body.off('keydown', handler);
         // update the component
         self.update();
       }
@@ -223,22 +216,22 @@
 
       // if the dropdown is set out
       if(self.out){
-        // check if it overflows the page, and move it in if it does
-        var rect = self.dropdown.getBoundingClientRect();
-        var leftOffset = window.innerWidth - rect.left;
-        var rightOffset = window.innerWidth - rect.right;
-        if(leftOffset < 0){
-          self.dropdown.style.left -= leftOffset;
-        } else if(rightOffset < 0){
-          self.dropdown.style.right -= rightOffset;
-        }
+        // // check if it overflows the page, and move it in if it does
+        // var rect = self.dropdown.getBoundingClientRect();
+        // var leftOffset = window.innerWidth - rect.left;
+        // var rightOffset = window.innerWidth - rect.right;
+        // if(leftOffset < 0){
+        //   self.dropdown.style.left -= leftOffset;
+        // } else if(rightOffset < 0){
+        //   self.dropdown.style.right -= rightOffset;
+        // }
         // add event listeners for clicking outside the dropdown
-        document.body.addEventListener('click', handler, false);
-        document.body.addEventListener('keydown', handler, false);
+        document.body.on('click', handler);
+        document.body.on('keydown', handler);
       } else {
         // remove event listeners for clicking outside the dropdown
-        document.body.removeEventListener('click', handler, false);
-        document.body.removeEventListener('keydown', handler, false);
+        document.body.off('click', handler);
+        document.body.off('keydown', handler);
       }
     }
 

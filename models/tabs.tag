@@ -1,5 +1,5 @@
-<tabs>
 <!-- a tabbed switcher between content -->
+<tabs>
   <div name="container" onclick={ click }>
     <yield/>
   </div>
@@ -30,6 +30,10 @@
       border-bottom: 2px solid royalblue;
     }
 
+    > div > tab-button > a {
+      font-weight: bold;
+    }
+
     > div > tab {
       width: 100%;
       flex: main-size;
@@ -45,24 +49,23 @@
 
   <script>
     click(e){
-      var elem = e.target;
+      // the clicked tab-button
+      var elem = e.target.closest('tab-button');
 
-      if(elem.matches("tab-button, tab-button *")){
-
-        Array.prototype.forEach.call(this.container.querySelectorAll(":scope > .active"), function(it){
-          it.className = it.className.replace("active", "");
-        });
-
-        while(elem.tagName.toLowerCase() !== "tab-button"){
-          elem = elem.parentNode;
+      // if it's a tab button
+      if(elem){
+        // everything with the active class
+        for(var it of this.container.querySelectorAll(":scope > .active")){
+          // remove the active class
+          it.classList.remove("active");
         }
-
+        // find the index of the tab-button
         var k = 1, el = elem;
-        while(!el.matches(":nth-of-type("+k+")")) { ++k; }
-
-        elem.className += "active";
-
-        this.container.querySelector(":scope > tab:nth-of-type("+k+")").className += "active";
+        while(!el.matches("tab-button:nth-of-type("+k+")")) { ++k; }
+        // add the active class to the tab
+        elem.classList.add("active");
+        // show the tab with the same index
+        this.container.querySelector(":scope > tab:nth-of-type("+k+")").classList.add("active");
       }
 
     }
