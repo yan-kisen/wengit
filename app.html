@@ -7,6 +7,7 @@
     @import "node_modules/font-awesome/css/font-awesome.css";
     @import "app.css";
   </style>
+
   <script src="app.js"></script>
 </head>
 <body>
@@ -69,7 +70,15 @@
         </tabs>
       </dropdown>
     </div>
-    <filter placeholder="Filter repositories"><i class="fa fa-remove"></i></filter>
+    <repo-list>
+      <lh>GitHub</lh>
+      <li data-name="pitaj/wengit"><a href="#">wengit</a></li>
+      <li data-name="nodebb/nodebb"><a href="#">NodeBB</a></li>
+      <lh>BitBucket</lh>
+      <li data-name="aceshigh/website"><a href="#">website</a></li>
+      <lh>Other</lh>
+      <li data-name="something"><a href="#">something</a></li>
+    </repo-list>
     <span style="text-align: center;">sidebar stuff</span>
   </sidebar>
   <repository>

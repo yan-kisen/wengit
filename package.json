@@ -9,6 +9,7 @@
     "electron": "0.25.2"
   },
   "dependencies": {
+    "del": "^1.2.1",
     "font-awesome": "^4.3.0",
     "fuzzysearch": "^1.0.3",
     "gitignore": "^0.2.0",
@@ -19,5 +20,6 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/pitaj/wengit.git"
-  }
+  },
+  "license": "MIT"
 }
