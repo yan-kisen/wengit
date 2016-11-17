@@ -22,7 +22,7 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         height: 800,
         width: 600,
-        frame: false,
+        frame: true,
         // useContentSize:true,
         title: 'wengit',
         webPreferences: {
