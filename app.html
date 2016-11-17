@@ -1,90 +1,112 @@
 <!DOCTYPE html>
-
 <html>
+
 <head>
-  <title>wengit</title>
-  <style>
+    <title>wengit</title>
+    <style>
     @import "node_modules/font-awesome/css/font-awesome.css";
+    @import "node_modules/photon/dist/css/photon.css";
     @import "app.css";
-  </style>
-
-  <script src="app.js"></script>
+    </style>
 </head>
+
 <body>
-  <window-buttons></window-buttons>
-  <sidebar>
-    <div>
-      <dropdown id="add-repo-dropdown"
-      button='<i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i>' >
-        <tabs>
-          <tab-button>
-            Add
-          </tab-button>
-          <tab-button class="active" >
-            Create
-          </tab-button>
-          <tab-button>
-            Clone
-          </tab-button>
-
-          <tab>
-            <form id="add-local-repo">
-              <field-group>
-                <label for="add-repo-local-path">Local Path</label>
-                <folder-input id="add-repo-local-path">Browse</folder-input>
-              </field-group>
-            </form>
-            <confirm-action disabled>
-              Add local repository
-            </confirm-action>
-          </tab>
-          <tab class="active">
-            <form id="create-repo">
-              <field-group>
-                <label for="create-repo-name">Name</label>
-                <input type="text" id="create-repo-name">
-              </field-group>
-              <field-group>
-                <label for="create-repo-local-path">Local Path</label>
-                <folder-input id="create-repo-local-path">Browse</folder-input>
-              </field-group>
-              <field-group>
-                <label for="create-repo-git-ignore">Git ignore</label>
-                <three-sel id="create-repo-git-ignore">
-                  <li data-value="none" class="selected"><a href="#">None</a></li>
-                </three-sel>
-              </field-group>
-            </form>
-            <confirm-action disabled>
-              Create new repository
-            </confirm-action>
-          </tab>
-          <tab>
-            <form id="clone-repo">
-
-            </form>
-            <confirm-action disabled>
-              Clone remote repository
-            </confirm-action>
-          </tab>
-        </tabs>
-      </dropdown>
+    <div class="window">
+        <header class="toolbar toolbar-header">
+            <h1 class="title">Header</h1>
+            <div class="toolbar-actions">
+                <div class="btn-group">
+                    <button class="btn btn-default">
+                        <span class="icon icon-home"></span>
+                    </button>
+                </div>
+                <window-buttons></window-buttons>
+            </div>
+        </header>
+        <div class="window-content">
+            <div class="pane-group">
+                <div class="pane-sm sidebar">
+                    <sidebar>
+                        <div>
+                            <dropdown id="add-repo-dropdown" button='<i class="fa fa-plus"></i> <i class="fa fa-caret-down"></i>'>
+                                <tabs>
+                                    <tab-button>
+                                        Add
+                                    </tab-button>
+                                    <tab-button class="active">
+                                        Create
+                                    </tab-button>
+                                    <tab-button>
+                                        Clone
+                                    </tab-button>
+                                    <tab>
+                                        <form id="add-local-repo">
+                                            <field-group>
+                                                <label for="add-repo-local-path">Local Path</label>
+                                                <folder-input id="add-repo-local-path">Browse</folder-input>
+                                            </field-group>
+                                        </form>
+                                        <confirm-action disabled>
+                                            Add local repository
+                                        </confirm-action>
+                                    </tab>
+                                    <tab class="active">
+                                        <form id="create-repo">
+                                            <field-group>
+                                                <label for="create-repo-name">Name</label>
+                                                <input type="text" id="create-repo-name">
+                                            </field-group>
+                                            <field-group>
+                                                <label for="create-repo-local-path">Local Path</label>
+                                                <folder-input id="create-repo-local-path">Browse</folder-input>
+                                            </field-group>
+                                            <field-group>
+                                                <label for="create-repo-git-ignore">Git ignore</label>
+                                                <three-sel id="create-repo-git-ignore">
+                                                    <li data-value="none" class="selected"><a href="#">None</a></li>
+                                                </three-sel>
+                                            </field-group>
+                                        </form>
+                                        <confirm-action disabled>
+                                            Create new repository
+                                        </confirm-action>
+                                    </tab>
+                                    <tab>
+                                        <form id="clone-repo">
+                                        </form>
+                                        <confirm-action disabled>
+                                            Clone remote repository
+                                        </confirm-action>
+                                    </tab>
+                                </tabs>
+                            </dropdown>
+                        </div>
+                        <repo-list>
+                            <lh>GitHub</lh>
+                            <li data-name="pitaj/wengit"><a href="#">wengit</a></li>
+                            <li data-name="nodebb/nodebb"><a href="#">NodeBB</a></li>
+                            <lh>BitBucket</lh>
+                            <li data-name="aceshigh/website"><a href="#">website</a></li>
+                            <lh>Other</lh>
+                            <li data-name="something"><a href="#">something</a></li>
+                        </repo-list>
+                        <span style="text-align: center;">sidebar stuff</span>
+                    </sidebar>
+                </div>
+                <div class="pane">
+                    <repository>
+                        <commit-list>
+                        </commit-list>
+                    </repository>
+                </div>
+            </div>
+        </div>
+        <footer class="toolbar toolbar-footer">
+            <h1 class="title">Footer</h1>
+            <debug-info></debug-info>
+        </footer>
     </div>
-    <repo-list>
-      <lh>GitHub</lh>
-      <li data-name="pitaj/wengit"><a href="#">wengit</a></li>
-      <li data-name="nodebb/nodebb"><a href="#">NodeBB</a></li>
-      <lh>BitBucket</lh>
-      <li data-name="aceshigh/website"><a href="#">website</a></li>
-      <lh>Other</lh>
-      <li data-name="something"><a href="#">something</a></li>
-    </repo-list>
-    <span style="text-align: center;">sidebar stuff</span>
-  </sidebar>
-  <repository>
-    <commit-list>
-
-    </commit-list>
-  </repository>
 </body>
+<script src="app.js"></script>
+
 </html>

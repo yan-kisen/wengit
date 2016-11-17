@@ -1,7 +1,7 @@
 "use strict";
 
-var fs = require('fs');
-var del = require('del');
+const fs = require('fs');
+const del = require('del');
 
 var database = module.exports = {
   defaultData: {
