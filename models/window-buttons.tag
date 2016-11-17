@@ -2,18 +2,29 @@
 <!-- custom window buttons for minimize, maximize, close -->
 
   <!-- right corner -->
-  <span>
-    <!-- minimize button -->
-    <a href="#" id="minimize" onclick={ minimize } title="minimize"><i>_</i></a>
-    <!-- maximize button -->
-    <a href="#" id="maximize" onclick={ maximize } title="maximize">
-      <i class="fa fa-square-o"></i>
-      <i class="fa fa-square-o"></i>
-    </a>
-    <!-- close button -->
-    <a href="#" id="close" onclick={ close } title="close"><i class="fa fa-remove"></i></a>
-  </span>
-  <div></div>
+  <div class="btn-group pull-right">
+      <button class="btn btn-default">
+        <a href="#" id="minimize" onclick={ minimize } title="minimize">
+          <i>_</i>
+        </a>
+      </button>
+      <button class="btn btn-default">
+        <a href="#" id="maximize" onclick={ maximize } title="maximize">
+           <i class="fa fa-square-o"></i>
+          <i class="fa fa-square-o"></i>
+        </a>
+      </button>
+      
+      <button class="btn btn-default active">
+        <span class="icon icon-popup"></span>
+      </button>
+      <button class="btn btn-default">
+         <a href="#" id="close" onclick={ close } title="close">
+          <i class="fa fa-remove"></i>
+         </a>
+      </button>
+    </div>
+ 
 
   <style>
     /* remove focus style for webkit */
@@ -22,17 +33,16 @@
     }
 
     window-buttons {
-      display: block;
       /* the bar acts as the window titlebar, so is draggable*/
       -webkit-app-region: drag;
     }
     window-buttons div {
-      clear: both;
+      /* clear: both; */
     }
     window-buttons span {
       /* exclude buttons from dragging */
       -webkit-app-region: no-drag;
-      display: block;
+      /* display: block; */
 
       /* the buttons float right */
       float: right;
@@ -97,14 +107,7 @@
       top: 5px;
       left: 6px;
     }
-    .max window-buttons span a#maximize {
-      width: 30px;
-    }
-
-    /* there's this stupid space between them for some reason */
-    window-buttons span a:nth-last-child(n+2) {
-      margin-right: -4px;
-    }
+    
   </style>
 
   <script>

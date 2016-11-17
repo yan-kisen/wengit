@@ -275,7 +275,7 @@
     browse(){
       // show a directory browse dialog
       // store directory (if selected) in the directory variable
-      var directory = Dialog.showOpenDialog({
+      var directory = dialog.showOpenDialog({
         properties: ['openDirectory'],
         title: 'Browse for repository directory'
       });

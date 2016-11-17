@@ -1,12 +1,20 @@
-"use strict";
+// "use strict";
 
-var riot = module.parent.require('riot');
+// var riot = module.parent.require('riot');
 
-require('./window-buttons.tag');
-require('./sidebar.tag');
-require('./repository.tag');
+// const {remote} = require('electron')
+// const {Menu, MenuItem, BrowserWindow, dialog} = remote
 
-require('./dropdown.tag');
-require('./tabs.tag');
-require('./inputs.tag');
-require('./overlay.tag');
+// const riot = require('riot');
+
+
+exports = {
+    windowButtons: require('./window-buttons.tag'),
+    sidebar: require('./sidebar.tag'),
+    repository: require('./repository.tag'),
+    dropdown: require('./dropdown.tag'),
+    tabs: require('./tabs.tag'),
+    inputs: require('./inputs.tag'),
+    overlay: require('./overlay.tag'),
+    debugElectron: require('./debug-info.tag')
+};
